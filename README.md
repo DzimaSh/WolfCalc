@@ -22,6 +22,43 @@ WolfCalc - это комплексная система, которая вклю
 ### Подсистема вычислений
 Подсистема вычислений выполняет все необходимые вычисления, требуемые для обработки запросов пользователей. Она включает в себя различные алгоритмы и методы вычислений.
 
+### Подсистема авторизации и аутентификации
+
+#### Диаграмма входа в систему по умолчанию
+
+```mermaid
+graph TD
+    A[Start] --> B{New User?}
+    B -->|Yes| C[Sign Up]
+    B -->|No| D[Sign In]
+    C --> E[Home Page]
+    D --> E
+    E --> F{Sign Out?}
+    F -->|Yes| G[Goodbye!]
+    F -->|No| E
+
+```
+
+#### TOTP (Time-based One-Time Password)
+Метод одноразовых паролей, основанный на времени, генерирует одноразовые пароли, используя общий секрет в сочетании с временным окном в качестве источника уникальности. Этот алгоритм используется в широко известных приложениях-аутентификаторах, например Google Authenticator, Mircrosoft Authenticator и других.
+
+#### TOTP диаграмма
+```mermaid
+sequenceDiagram
+participant Client
+participant Server
+Client -> Server: shared secret
+Client ->> Server: login (name: xy, password: xy)
+Server ->> Client : 401 TOTP required
+Client ->> Client: Client generates TOTP
+Client ->> Server: login (name: xy, password: xy, totp: 564867)
+Server ->> Server: Server generates TOTP
+Server ->> Server: Is client TOTP the same?
+Server -->> Client: If equal: JWT (session, ...)
+Server -->> Client: If different: 401, BadCredentials
+```
+
+
 ### Подсистема управления уведомлениями
 Подсистема управления уведомлениями управляет отправкой уведомлений пользователям. Она позволяет системе информировать пользователей о различных событиях, таких как завершение вычислений или получение нового сообщения.
 

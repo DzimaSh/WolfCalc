@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.ivanfranchin</groupId>
+    <groupId>by.bsu</groupId>
     <artifactId>spring-integration-examples</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>

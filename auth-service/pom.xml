@@ -10,7 +10,7 @@
 	<description>Spring security jwt and social login</description>
 
 	<parent>
-		<groupId>com.ivanfranchin</groupId>
+		<groupId>by.bsu</groupId>
 		<artifactId>spring-integration-examples</artifactId>
 		<version>1.0.0</version>
 		<relativePath>../pom.xml</relativePath>
